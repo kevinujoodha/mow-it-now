@@ -6,6 +6,8 @@ import com.xebia.test.beans.Position;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static com.xebia.test.beans.CardinalPoint.*;
 import static com.xebia.test.beans.Command.*;
 
@@ -15,13 +17,25 @@ public class MowerCommandServiceTest {
     private static final int LIMIT_Y = 5;
 
     @Test(expected = IllegalArgumentException.class)
-    public void should_throws_an_exception_when_mower_is_null() {
+    public void should_throw_an_exception_when_mower_is_null() {
         MowerCommandService.INSTANCE.executeCommand(null, Command.FORWARD);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void should_throws_an_exception_when_command_is_null() {
-        MowerCommandService.INSTANCE.executeCommand(new Mower(null, 0, 0), null);
+    public void should_throw_an_exception_when_command_is_null() {
+        MowerCommandService.INSTANCE.executeCommand(new Mower(null, 0, 0), (Command) null);
+    }
+
+    @Test
+    public void should_execute_a_list_of_command_when_commands_are_correct() {
+        Mower mower = new Mower(new Position(1, 2, NORTH), LIMIT_X, LIMIT_Y);
+
+        MowerCommandService.INSTANCE.executeCommand(
+                mower,
+                Arrays.asList(LEFT, FORWARD, LEFT, FORWARD, LEFT, FORWARD, LEFT, FORWARD, FORWARD)
+        );
+
+        Assert.assertEquals(new Position(1, 3, NORTH), mower.getPosition());
     }
 
     @Test

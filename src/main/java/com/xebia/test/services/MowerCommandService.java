@@ -14,6 +14,10 @@ public enum MowerCommandService {
 
     private static final List<CardinalPoint> ORDERED_CARDINAL_POINTS = Arrays.asList(NORTH, EAST, SOUTH, WEST);
 
+    public void executeCommand(Mower mower, List<Command> commands) {
+        commands.forEach(command -> executeCommand(mower, command));
+    }
+
     public void executeCommand(Mower mower, Command command) {
         checkInputs(mower, command);
 

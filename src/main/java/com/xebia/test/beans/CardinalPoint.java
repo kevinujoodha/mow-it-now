@@ -1,7 +1,9 @@
 package com.xebia.test.beans;
 
+import java.util.Arrays;
+
 public enum CardinalPoint {
-    NORTH {
+    NORTH("N") {
         @Override
         public void move(Mower mower) {
             if (mower.getPosition().getY() < mower.getLimitY()) {
@@ -10,7 +12,7 @@ public enum CardinalPoint {
         }
     },
 
-    EAST {
+    EAST("E") {
         @Override
         public void move(Mower mower) {
             if (mower.getPosition().getX() < mower.getLimitX()) {
@@ -19,7 +21,7 @@ public enum CardinalPoint {
         }
     },
 
-    WEST {
+    WEST("W") {
         @Override
         public void move(Mower mower) {
             if (mower.getPosition().getX() > 0) {
@@ -28,7 +30,7 @@ public enum CardinalPoint {
         }
     },
 
-    SOUTH {
+    SOUTH("S") {
         @Override
         public void move(Mower mower) {
             if (mower.getPosition().getY() > 0) {
@@ -36,6 +38,23 @@ public enum CardinalPoint {
             }
         }
     };
+
+    private String label;
+
+    CardinalPoint(String label) {
+        this.label = label;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public static CardinalPoint fromLabel(String label) {
+        return Arrays.stream(values())
+                .filter(c -> c.label.equals(label))
+                .findAny()
+                .orElseThrow();
+    }
 
     public abstract void move(Mower mower);
 }
