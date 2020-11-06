@@ -1,0 +1,13 @@
+# limit of the grid
+5 5
+
+# initial position of the first mower
+1 2 N
+# commands
+GAGAGAGAA
+
+# initial position of the second mower
+3 3 E
+# commands
+AADAADADDA
+

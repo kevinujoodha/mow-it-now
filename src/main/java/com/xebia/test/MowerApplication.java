@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MowerApplication {
 
@@ -19,7 +20,13 @@ public class MowerApplication {
 
         try {
             Path path = checkFile(args);
-            List<String> lines = Files.readAllLines(path);
+
+            List<String> lines = Files.lines(path)
+                    .map(String::trim)
+                    .filter(line -> !line.isEmpty())
+                    .filter(line -> !line.startsWith("#"))
+                    .collect(Collectors.toList());
+
             List<Mower> mowers = MowerBatchService.INSTANCE.executeBatch(lines);
             LOGGER.info("End position of mowers : ");
             mowers.forEach(mower -> LOGGER.info(mower.getPosition().toString()));
