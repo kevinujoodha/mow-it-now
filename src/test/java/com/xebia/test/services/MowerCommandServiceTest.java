@@ -23,7 +23,7 @@ public class MowerCommandServiceTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void should_throw_an_exception_when_command_is_null() {
-        MowerCommandService.INSTANCE.executeCommand(new Mower(null, 0, 0), (Command) null);
+        MowerCommandService.INSTANCE.executeCommand(new Mower(new Position(0, 0, null), 0, 0), (Command) null);
     }
 
     @Test

@@ -53,7 +53,7 @@ public enum CardinalPoint {
         return Arrays.stream(values())
                 .filter(c -> c.label.equals(label))
                 .findAny()
-                .orElseThrow();
+                .orElseThrow(() -> new IllegalArgumentException(label + " is not a valid cardinal point"));
     }
 
     public abstract void move(Mower mower);

@@ -59,7 +59,7 @@ public class MowerFileServiceTest {
         );
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void should_throw_an_exception_when_commands_are_incorrect() {
         MowerFileService.INSTANCE.readCommands("bad format");
     }

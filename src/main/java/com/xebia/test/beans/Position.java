@@ -54,10 +54,11 @@ public class Position {
 
     @Override
     public String toString() {
-        return "Position{" +
-                "x=" + x +
-                ", y=" + y +
-                ", cardinalPoint=" + cardinalPoint +
-                '}';
+        return  String.join(
+                " ",
+                String.valueOf(x),
+                String.valueOf(y),
+                cardinalPoint == null ? "" : cardinalPoint.getLabel()
+        );
     }
 }

@@ -19,6 +19,6 @@ public enum Command {
         return Arrays.stream(values())
                 .filter(c -> c.label.equals(label))
                 .findAny()
-                .orElseThrow();
+                .orElseThrow(() -> new IllegalArgumentException(label + " is not a valid command"));
     }
 }
