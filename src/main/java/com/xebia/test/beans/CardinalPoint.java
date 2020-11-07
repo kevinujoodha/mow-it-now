@@ -39,7 +39,7 @@ public enum CardinalPoint {
         }
     };
 
-    private String label;
+    private final String label;
 
     CardinalPoint(String label) {
         this.label = label;

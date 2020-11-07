@@ -6,7 +6,7 @@ public class Mower {
     private final int limitY;
 
     public Mower(Position position, int limitX, int limitY) {
-        if(position.getX() > limitX || position.getY() > limitY) {
+        if (position.getX() > limitX || position.getY() > limitY) {
             throw new IllegalArgumentException("The position " + position.toString()
                     + " exceeds the limit " + limitX + " " + limitY);
         }

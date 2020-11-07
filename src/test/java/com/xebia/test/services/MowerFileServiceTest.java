@@ -6,7 +6,6 @@ import com.xebia.test.exceptions.UnreadableMowerFileException;
 import org.junit.Test;
 
 import java.util.Arrays;
-import java.util.NoSuchElementException;
 
 import static com.xebia.test.beans.Command.*;
 import static org.junit.Assert.assertEquals;
